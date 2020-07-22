@@ -34,6 +34,6 @@ Then select the appropriate kernel in the notebook (Kernel -> Change kernel).
 I have things running in a conda environment on a desktop running Ubuntu 18.04.4 LTS. It's using an old-ish Nvidia GeFore GTX 1060 with driver version 440.100, and CUDA version 10.2. There are a lot of ways to get your drivers set up correctly, suffice it to say it can be a headache starting out. Some may find it easier to start out with something like [Google Colab](https://colab.research.google.com/).
 
 ## More Images!
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/flowers.gif" alt="flowers - animated" width="90%"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/clouds.gif" alt="clouds - animated" width="90%"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/faces.gif" alt="faces - animated" width="90%"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/flowers.gif" alt="flowers - animated" width="256"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/clouds.gif" alt="clouds - animated" width="256"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/faces.gif" alt="faces - animated" width="256"></p>
