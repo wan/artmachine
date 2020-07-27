@@ -34,6 +34,9 @@ Then select the appropriate kernel in the notebook (Kernel -> Change kernel).
 
 I have things running in a conda environment on a linux desktop with an old-ish GTX 1060 in it. If you want to keep it even simpler (and get access way better hardware), check out [Google Colab](https://colab.research.google.com/).
 
+## Running the CoreML model
+You can run model inference using Python and coremltools, but it's more exciting actually running on a device. [ContentView.swift](https://github.com/wan/artmachine/blob/master/TensorFlow2-CoreML/ContentView.swift) provides a very simple example of image generation running in SwiftUI. It uses GameKit's GKGaussianDistribution to create noise input to the model, and converts model output to an image which is displayed in the center of the screen. Tap to generate a new image!
+
 ## Animated Images!
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/flowers.gif" alt="flowers - animated" width="256"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/clouds.gif" alt="clouds - animated" width="256"></p>
