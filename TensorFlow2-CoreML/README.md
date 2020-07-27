@@ -38,3 +38,6 @@ I have things running in a conda environment on a linux desktop with an old-ish 
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/flowers.gif" alt="flowers - animated" width="256"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/clouds.gif" alt="clouds - animated" width="256"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/faces.gif" alt="faces - animated" width="256"></p>
+
+### A model running on the iPhone 11 simulator
+<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/TensorFlow2-CoreML/images/ios-demo.gif" alt="ios - animated" width="256"></p>
