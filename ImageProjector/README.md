@@ -1,20 +1,11 @@
-# Make image-projecting lanterns!
-## A Fusion 360 Add-in
+# Make pinhole lanterns in Fusion 360!
+This add-in generates pinhole lanterns from spherical images.
 
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/render.png" alt="image projector render" width="90%"></p>
+<p align="center"><img src="images/lamp.jpg" alt="3d printed abs lamp" width="90%"></p>
 
-## Summary
 The add-in prompts you to select a target body and image file. A Python script will process the image, then cut projection pinholes into the target body to make it project the image in 360 degrees.
 
 These cuts are made by creating a number of cone tool bodies, which have varying radii based on the brightness of the specified image file.
-
-### Assumptions
-This project is pretty rough-hewn, and a couple assumptions have been made:
-  1. The script assumes there'll be exactly one light source centered at the origin (0, 0, 0).
-  2. The target body will be less than 48 "units" in size
-  3. The projection will be spherical, and the image will be treated as a spherical image. Be sure to provide one that is equirectangular (should have width double its height). 
-  4. The image will be processed with 16384 tiles. For more on this, check out the [Mercantile documentation](https://mercantile.readthedocs.io/en/latest/quickstart.html).
-  5. Add-in dependencies will be installed in a folder named "packages", in the root folder of the add-in. For more about this, see "Installation"
 
 ## Installation
 This is a Python add-in, and will be run using the Python interpreter that comes with your version of Fusion 360.
@@ -41,14 +32,28 @@ Next, set up a virtual environment with the same version (I recommend using [ven
 pip install --target packages -r requirements.txt
 ```
 
-Finally, open up the Fusion 360 add-in menu and check that ImageProjector is there:
-<p align="center"><img src=""></p>
+Finally, open up the Fusion 360 add-in menu and check that ImageProjector is there.
+
+### Assumptions
+This add-in is pretty rough, and makes some assumptions:
+  1. There's exactly one point light source and its centered at the origin (0, 0, 0).
+  2. The target body will be less than 48 "units" in size
+  3. The projection will be spherical, and the image will be treated as a spherical image. Be sure to provide one that is equirectangular (should have width double its height). 
+  4. The image will be processed as a grid of 16384 tiles. For more on this, check out the [Mercantile documentation](https://mercantile.readthedocs.io/en/latest/quickstart.html).
+
+## What it does
+The script iterates around a sphere using a [Fibonacci lattice](https://observablehq.com/@mbostock/spherical-fibonacci-lattice). This lets us space our points more-or-less evenly (at least compared to naively iterating by latitude/longitude, which leads to too many holes near the top of the projection sphere, and too few around the equator).
+
+At each vertex, the add-in computes the average luminosity of the corresponding area in the provided image. It then generates a tool body (cone) with radius proportional to the luminosity.
+
+Finally, it takes the union of the tool bodies and executes a combine (cut) against the selected target body. Here's a picture of the generated tools in action:
+<p align="center"><img src="images/tool_bodies.jpg" alt="tool bodies" width="60%"></p>
 
 ## Usage
 The add-in interface is shown here:
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/ux.jpg" alt="add-in user interface" width="90%"></p>
+<p align="center"><img src="images/ux.jpg" alt="add-in user interface" width="90%"></p>
 
-Parameters include:
+Parameters:
   - Projection Body: the target body that will be cut into
   - Image Filename: an absolute path to an image file
   - Number of sample points: the number of vertices on our sphere
@@ -56,19 +61,20 @@ Parameters include:
   - Aperture radius scale: a value between 0 and 1 that varies the size of projection holes. Smaller holes are harder for light to pass through, but will produce a more pronounced pinhole-camera effect.
   - Mirror x-axis: selecting this will make the lantern's surface look like the image, and project an inverted image.
 
-## Algorithm and Results
-The script iterates around a sphere using a [Fibonacci lattice](https://observablehq.com/@mbostock/spherical-fibonacci-lattice) with N=samples vertices. This lets us space our points more-or-less evenly (at least compared to naively iterating by latitude/longitude, which leads to too many holes near the top of the projection sphere, and too few around the equator).
+Here's a render of the final model:
+<p align="center"><img src="images/render.png" alt="model render" width="90%"></p>
 
-At each vertex, the add-in computes the average luminosity of the corresponding area in the provided image. It then generates a tool body (cone) with radius proportional to the luminosity.
+# Results
 
-Finally, it takes the union of the tool bodies and executes a combine (cut) against the selected target body.
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/tool_bodies.jpg" alt="computed tool bodies" width="90%"></p>
+I spent a lot of time tweaking settings and generating .stl files. Generating too many holes blows up the filesize, but too few makes for really low resolution on the sphere. Making the aperture size too small makes the holes difficult to print.
 
-Here are some models that were printed in ABS:
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/prototypes.jpg" alt="abs printed prototypes" width="90%"></p>
+Here are the final prints of the globe lamp! I made these at the [Laney Fab Lab](https://laney.edu/fablab/). The print in thin white ABS has a really nice glowing effect.
+<p align="center"><img src="images/prototypes.jpg" alt="model render" width="60%"></p>
 
-And shots of the projected images:
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/filament_projection.jpg" alt="filament projection" width="90%"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/led_projection.jpg" alt="led projection" width="90%"></p>
+Image projection works **much** better with darker colors. Here's a print in black ABS casting an image onto a wall:
+<p align="center"><img src="images/projector.jpg" alt="model render" width="60%"></p>
 
-Depending on the aperture size, each hole can act as a pinhole projector, casting an image of the bulb filament out of the lantern. It's a neat effect, and was totally unintended going into this.
+With a small enough aperture size each hole acts as a pinhole projector, casting an image of the bulb filament out of the lantern. It's a neat effect, and was totally unintended going into this.
+<p align="center"><img src="images/filament_projection.jpg" alt="filament projection" width="90%"></p>
+
+Generally, the sharpness of the image will improve as the pinholes get smaller.
