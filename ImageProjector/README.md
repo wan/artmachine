@@ -62,7 +62,7 @@ The script iterates around a sphere using a [Fibonacci lattice](https://observab
 At each vertex, the add-in computes the average luminosity of the corresponding area in the provided image. It then generates a tool body (cone) with radius proportional to the luminosity.
 
 Finally, it takes the union of the tool bodies and executes a combine (cut) against the selected target body.
-<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/tool_bodies.png" alt="computed tool bodies" width="90%"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/tool_bodies.jpg" alt="computed tool bodies" width="90%"></p>
 
 Here are some models that were printed in ABS:
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/prototypes.jpg" alt="abs printed prototypes" width="90%"></p>
