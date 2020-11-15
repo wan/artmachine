@@ -1,4 +1,5 @@
-# ImageProjector: A Fusion 360 add-in for turning bodies into image-projecting lanterns
+# Make image-projecting lanterns!
+## A Fusion 360 Add-in
 
 <p align="center"><img src="https://raw.githubusercontent.com/wan/artmachine/master/ImageProjector/images/render.png" alt="image projector render" width="90%"></p>
 
