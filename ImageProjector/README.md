@@ -8,6 +8,8 @@ The add-in takes a solid body and an equirectangular image file like this:
 
 It processes the image and cuts projection pinholes into the target body to make it project the image in a globe.
 
+I made this as my final project for [Digital Fabrication](https://laney.edu/carpentry/digital-fabrication/) at Laney College in fall 2019.
+
 ## Usage
 The add-in interface is shown here:
 <p align="center"><img src="images/ux.jpg" alt="add-in user interface" width="90%"></p>
