@@ -42,12 +42,16 @@ if packagepath not in sys.path:
 
 To install them, start by determining the version of Python Fusion 360 uses. There's more about this at [Mod the Machine](https://modthemachine.typepad.com/my_weblog/2019/09/debug-fusion-360-add-ins.html).
 
-Next, set up a virtual environment with the same version (I recommend using [venv](https://docs.python.org/3/library/venv.html) or similar), navigate into the ImageProjector folder, and use pip to install the dependencies into the packages folder:
+Set up a virtual environment with the same version of Python (mine is running 3.7.6 as of Nov 18, 2020), navigate into the ImageProjector folder, and use pip to install the dependencies into the packages folder. Here's the process using pyenv:
 ```bash
+pyenv install 3.7.6
+pyenv virtualenv 3.7.6 fusion
+pyenv activate fusion
 pip install --target packages -r requirements.txt
 ```
 
-Finally, open up the Fusion 360 add-in menu and check that ImageProjector is there.
+Finally, open up the Fusion 360 add-ins menu (under the Tools tab) and add the folder to "My Scripts":
+<p align="center"><img src="images/addin_window.png" alt="Fusion 360 add-in window" width="60%"></p>
 
 ### Assumptions
 This add-in is pretty rough, and makes some assumptions:
